@@ -1,3 +1,4 @@
+//Now with github :)
 const {
   Client,
   GatewayIntentBits,
@@ -32,6 +33,18 @@ const bot = new Client({
 bot.on("ready", () => {
   console.log("Chuckle is online!");
 });
+function doReboot(){
+   process.exit();
+
+}
+
+function reboot(uid, m){
+    if(uid==618031275961352203){
+        doReboot();
+    }else{
+        m.reply("hmm.. no. i dont think so");
+    }
+}
 
 bot.on("messageCreate", (message) => {
   if (message.author.bot) {
@@ -40,11 +53,15 @@ bot.on("messageCreate", (message) => {
   let filter = message.content.toLowerCase();
   let reg = filter.replace(/[^\w\s]/gm, "");
   switch (reg) {
+    case "reboot plz":
+        reboot(message.author.id, message);
+        break;
     case "hey chuckle":
       message.reply(
         "Hey there, <@" +
           message.author.id +
-          ">! Im now running on Discord.js! :partying_face:",
+          ">! Im now running on Discord.js! :partying_face:"+
+          "\nPlus i have a Github Repo now too!",
       );
       break;
     case "chuckle what can you do":
@@ -87,9 +104,19 @@ function rematch_rps(message){
 //Rock Paper Scissors code
 bot.on("interactionCreate", async (interaction) => {
   if (!interaction.isButton()) return;
+  //Remove Buttons
 
   const choices = ["rock", "paper", "scissors"];
-  const userChoice = interaction.customId;
+  const uc = interaction.customId;
+  const chs = uc.split("_");
+  const realId = chs[0];
+  const userChoice = chs[1];
+  if(realId != interaction.user.id)
+  {
+     await interaction.reply({ content: 'You arent the Player!', ephemeral: true });
+     return;
+  }
+  //interaction.message.edit({ components: [] });
   //Get Random Choice
   const botChoice = choices[Math.floor(Math.random() * choices.length)];
 
@@ -106,7 +133,10 @@ bot.on("interactionCreate", async (interaction) => {
     result = "You lose! " + upper(botChoice) + " beats " + upper(userChoice);
   }
 
-  await interaction.reply(result);
+  await interaction.message.edit({
+      content: result,
+      components: []
+      });
   rematch_user = interaction.user.id;
 });
 function upper(str){
@@ -117,15 +147,15 @@ function upper(str){
 async function r_p_s(msg) {
   //Select 📄, ✂️, or 🪨
   const rock = new ButtonBuilder()
-    .setCustomId("rock")
+    .setCustomId(msg.author.id+"_rock")
     .setLabel("🪨")
     .setStyle(ButtonStyle.Primary);
   const paper = new ButtonBuilder()
-    .setCustomId("paper")
+    .setCustomId(msg.author.id+"_paper")
     .setLabel("📄")
     .setStyle(ButtonStyle.Primary);
   const scissors = new ButtonBuilder()
-    .setCustomId("scissors")
+    .setCustomId(msg.author.id+"_scissors")
     .setLabel("✂️")
     .setStyle(ButtonStyle.Primary);
   const row = new ActionRowBuilder().addComponents(rock, paper, scissors);
