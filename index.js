@@ -37,14 +37,14 @@ function doReboot(){
    process.exit();
 
 }
-
+/* WILL REMOVE SOON
 function reboot(uid, m){
     if(uid==618031275961352203){
         doReboot();
     }else{
         m.reply("hmm.. no. i dont think so");
     }
-}
+}*/
 
 bot.on("messageCreate", (message) => {
   if (message.author.bot) {
@@ -54,15 +54,17 @@ bot.on("messageCreate", (message) => {
   let reg = filter.replace(/[^\w\s]/gm, "");
   switch (reg) {
     case "reboot plz":
-        reboot(message.author.id, message);
+      require("./actions/reboot.js").run(message);
+        //reboot(message.author.id, message);
         break;
     case "hey chuckle":
-      message.reply(
+      require("./actions/greet.js").hey(message);
+      /*message.reply(
         "Hey there, <@" +
           message.author.id +
           ">! Im now running on Discord.js! :partying_face:"+
           "\nPlus i have a Github Repo now too!",
-      );
+      );*/
       break;
     case "chuckle what can you do":
       message.reply(
