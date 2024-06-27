@@ -11,6 +11,7 @@ const {
 /* Commands */
 const _reboot = require("./actions/reboot.js");
 const { _greet_hey } = require("./actions/greet.js");
+const _joke = require("./actions/joke.js");
 /*----------*/
 
 require("dotenv").config();
@@ -60,31 +61,16 @@ bot.on("messageCreate", (message) => {
   switch (reg) {
     case "reboot plz":
       _reboot(message);
-        //reboot(message.author.id, message);
-        break;
+      break;
     case "hey chuckle":
       _greet_hey(message);
-      /*message.reply(
-        "Hey there, <@" +
-          message.author.id +
-          ">! Im now running on Discord.js! :partying_face:"+
-          "\nPlus i have a Github Repo now too!",
-      );*/
       break;
     case "chuckle what can you do":
-      message.reply(
-        'I can tell you a joke. Just say: "chuckle tell me a joke" \nand at some point, we\'ll even be able to play games together, like tic tac toe! :smile:',
-      );
+      _greet_possible(message);
       break;
     case "chuckle tell me a joke":
       console.log("Telling a joke.");
-      get_joke().then((joke) => {
-        message.reply(joke[0]).then((msg) => {
-          setTimeout(function () {
-            msg.edit(joke[0] + "\n" + joke[1]);
-          }, 2000);
-        });
-      });
+      _joke();
       break;
     case "chuckle lets play rock paper scissors":
       r_p_s(message);
@@ -172,20 +158,6 @@ async function r_p_s(msg) {
   });
 }
 
-async function get_joke(type = "") {
-  try {
-    const response = await fetch("https://joke.deno.dev/" + type);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
-    const data = await response.json();
-    const setup = data.setup;
-    const punchline = data.punchline;
-    return [setup, punchline];
-  } catch (error) {
-    console.error("Error fetching Joke:", error.message);
-  }
-}
 
 bot.login(token);
