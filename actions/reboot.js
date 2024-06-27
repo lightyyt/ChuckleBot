@@ -1,4 +1,4 @@
-const run = (msg) => {
+const _reboot = (msg) => {
   if(msg.author.id==618031275961352203) {
     msg.replay("Okay Boss!");
     doReboot();
@@ -7,4 +7,4 @@ const run = (msg) => {
   }
 }
 
-module.exports = run;
+module.exports = _reboot;

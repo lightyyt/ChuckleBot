@@ -1,4 +1,4 @@
-const hey = (msg) => {
+const _greet_hey = (msg) => {
   msg.reply(
     "Hey there, <@" +message.author.id +
     ">! Im now running on Discord.js! :partying_face:"+
@@ -6,4 +6,4 @@ const hey = (msg) => {
   );
 }
 
-module.exports = { hey };
+module.exports = { _greet_hey };
