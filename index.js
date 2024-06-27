@@ -8,6 +8,11 @@ const {
   WebhookClient
 } = require("discord.js");
 
+/* Commands */
+const _reboot = require("./actions/reboot.js");
+const { _greet } = require("./actions/greet.js");
+/*----------*/
+
 require("dotenv").config();
 //Webhook
 const wh_url = process.env.WEBHOOK
@@ -54,11 +59,11 @@ bot.on("messageCreate", (message) => {
   let reg = filter.replace(/[^\w\s]/gm, "");
   switch (reg) {
     case "reboot plz":
-      require("./actions/reboot.js").run(message);
+      _reboot(message);
         //reboot(message.author.id, message);
         break;
     case "hey chuckle":
-      require("./actions/greet.js").hey(message);
+      _greet_hey(message);
       /*message.reply(
         "Hey there, <@" +
           message.author.id +
