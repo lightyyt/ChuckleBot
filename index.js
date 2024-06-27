@@ -81,8 +81,13 @@ bot.on("messageCreate", (message) => {
         rematch_rps(message);
     }
   } catch (ex) {
-    let errch = message.channels.cache.get(1079858413841940480);
-    errch.send(ex);
+    wh.send({
+    	content: ex,
+    	username: 'Chuckple Error Logs',
+    	avatarURL: 'https://cdn-icons-png.freepik.com/512/4944/4944051.png',
+      });
+    console.log("EXCEPTION CAUGHT:");
+    console.log(ex);
   }
 });
 
