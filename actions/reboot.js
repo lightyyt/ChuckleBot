@@ -7,4 +7,9 @@ const _reboot = (msg) => {
   }
 }
 
-module.exports = _reboot;
+const doReboot = () => {
+   process.exit();
+
+}
+
+module.exports = { _reboot, doReboot };

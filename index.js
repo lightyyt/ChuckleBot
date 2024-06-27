@@ -9,7 +9,7 @@ const {
 } = require("discord.js");
 
 /* Commands */
-const _reboot = require("./actions/reboot.js");
+const { _reboot, doReboot } = require("./actions/reboot.js");
 const { _greet_hey, _greet_possible } = require("./actions/greet.js");
 const _joke = require("./actions/joke.js");
 /*   Util   */
@@ -60,10 +60,6 @@ const bot = new Client({
 bot.on("ready", () => {
   console.log("Chuckle is online!");
 });
-function doReboot(){
-   process.exit();
-
-}
 
 
 bot.on("messageCreate", (message) => {
