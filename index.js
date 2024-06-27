@@ -17,15 +17,32 @@ const { filter_text, filter_msg } = require("./util/filter.js");
 /*----------*/
 
 require("dotenv").config();
-//Webhook
-const wh_url = process.env.WEBHOOK
-const wh = new WebhookClient( { url: wh_url } );
-wh.send({
+//Webhooks
+const wh_info_url = process.env.WEBHOOKINFO
+const wh_info = new WebhookClient( { url: wh_info_url } );
+wh_info.send({
 	content: 'Chuckple Beta is Restarting!',
 	username: 'Chuckple Beta Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
 });
-
+const wh_logs_url = process.env.WEBHOOKINFO
+const wh_logs = new WebhookClient( { url: wh_logs_url } );
+function chuckleLog(type, header, content,color){
+  wh_logs.send({
+  content: null,
+  embeds: [
+    {
+      title: header,
+      description: content,
+      color: color,
+      author: {
+        name: type
+      }
+    }
+  ],
+  "attachments": []
+})
+}
 //Bot
 const token = process.env.TOKEN
 var rematch_user = null;
@@ -81,13 +98,9 @@ bot.on("messageCreate", (message) => {
         rematch_rps(message);
     }
   } catch (ex) {
-    wh.send({
-    	content: ex.stack,
-    	username: 'Chuckple Beta Errors',
-    	avatarURL: 'https://cdn-icons-png.freepik.com/512/4944/4944051.png',
-      });
-    console.log("EXCEPTION CAUGHT:");
-    console.log(ex.stack);
+    chuckleLog("Error", ex.toString(), ex.stack, 255*256*256)
+    console.log("EXCEPTION CAUGHT");
+    //console.log(ex.stack);
   }
 });
 
