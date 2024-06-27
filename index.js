@@ -58,6 +58,7 @@ bot.on("messageCreate", (message) => {
         if(message.author.id==618031275961352203){
           throw new Error("This is a debugging-error thrown by @<618031275961352203>!");
         }
+        break;
       case "hey chuckle":
         _greet_hey(message);
         break;
@@ -80,7 +81,7 @@ bot.on("messageCreate", (message) => {
         rematch_rps(message);
     }
   } catch (ex) {
-    let errch = client.channels.cache.get(1079858413841940480);
+    let errch = bot.channels.cache.get(1079858413841940480);
     errch.send(ex);
   }
 });
