@@ -49,31 +49,35 @@ function doReboot(){
 
 bot.on("messageCreate", (message) => {
   if (message.author.bot) { return; }
-  
-  switch ( filter_msg(message) ) {
-    case "reboot plz":
-      _reboot(message);
-      break;
-    case "hey chuckle":
-      _greet_hey(message);
-      break;
-    case "chuckle what can you do":
-      _greet_possible(message);
-      break;
-    case "chuckle tell me a joke":
-      _joke();
-      break;
-    case "chuckle lets play rock paper scissors":
-      r_p_s(message);
-      break;
-    case "chuckle i want a rematch":
-      rematch_rps(message);
-      break;
-    case "rematch chuckle":
-      rematch_rps(message);
-      break;
-    case "chuckle lets play again":
-      rematch_rps(message);
+  try{
+    switch ( filter_msg(message) ) {
+      case "reboot plz":
+        _reboot(message);
+        break;
+      case "hey chuckle":
+        _greet_hey(message);
+        break;
+      case "chuckle what can you do":
+        _greet_possible(message);
+        break;
+      case "chuckle tell me a joke":
+        _joke();
+        break;
+      case "chuckle lets play rock paper scissors":
+        r_p_s(message);
+        break;
+      case "chuckle i want a rematch":
+        rematch_rps(message);
+        break;
+      case "rematch chuckle":
+        rematch_rps(message);
+        break;
+      case "chuckle lets play again":
+        rematch_rps(message);
+    }
+  } catch (ex) {
+    let errch = client.channels.cache.get(1079858413841940480);
+    errch.send(ex);
   }
 });
 
