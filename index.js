@@ -54,6 +54,10 @@ bot.on("messageCreate", (message) => {
       case "reboot plz":
         _reboot(message);
         break;
+      case 'error plz':
+        if(message.author.id==618031275961352203){
+          throw new Error("This is a debugging-error thrown by @<618031275961352203>!");
+        }
       case "hey chuckle":
         _greet_hey(message);
         break;
@@ -61,7 +65,7 @@ bot.on("messageCreate", (message) => {
         _greet_possible(message);
         break;
       case "chuckle tell me a joke":
-        _joke();
+        _joke(message);
         break;
       case "chuckle lets play rock paper scissors":
         r_p_s(message);
