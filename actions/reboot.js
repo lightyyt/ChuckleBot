@@ -1,4 +1,4 @@
-let run = (msg) => {
+function run(msg){
   if(msg.author.id==618031275961352203) {
     msg.replay("Okay Boss!");
     doReboot();

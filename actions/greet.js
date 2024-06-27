@@ -1,4 +1,4 @@
-let hey = (msg) => {
+function hey(msg) {
   msg.reply(
     "Hey there, <@" +message.author.id +
     ">! Im now running on Discord.js! :partying_face:"+
