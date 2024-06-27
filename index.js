@@ -81,7 +81,7 @@ bot.on("messageCreate", (message) => {
         rematch_rps(message);
     }
   } catch (ex) {
-    let errch = bot.channels.cache.get(1079858413841940480);
+    let errch = message.channels.cache.get(1079858413841940480);
     errch.send(ex);
   }
 });
