@@ -25,11 +25,13 @@ wh_info.send({
 	username: 'Chuckple Beta Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
 });
-const wh_logs_url = process.env.WEBHOOKINFO
+const wh_logs_url = process.env.WEBHOOKLOGS
 const wh_logs = new WebhookClient( { url: wh_logs_url } );
 function chuckleLog(type, header, content,color){
   wh_logs.send({
   content: null,
+  username: 'Chuckple Beta Infos',
+	avatarURL: 'https://cdn-icons-png.freepik.com/512/4944/4944051.png',
   embeds: [
     {
       title: header,
