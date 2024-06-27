@@ -10,8 +10,10 @@ const {
 
 /* Commands */
 const _reboot = require("./actions/reboot.js");
-const { _greet_hey } = require("./actions/greet.js");
+const { _greet_hey, _greet_possible } = require("./actions/greet.js");
 const _joke = require("./actions/joke.js");
+/*   Util   */
+const { filter_text, filter_msg } = require("./util/filter.js");
 /*----------*/
 
 require("dotenv").config();
@@ -43,22 +45,12 @@ function doReboot(){
    process.exit();
 
 }
-/* WILL REMOVE SOON
-function reboot(uid, m){
-    if(uid==618031275961352203){
-        doReboot();
-    }else{
-        m.reply("hmm.. no. i dont think so");
-    }
-}*/
+
 
 bot.on("messageCreate", (message) => {
-  if (message.author.bot) {
-    return;
-  }
-  let filter = message.content.toLowerCase();
-  let reg = filter.replace(/[^\w\s]/gm, "");
-  switch (reg) {
+  if (message.author.bot) { return; }
+  
+  switch ( filter_msg(message) ) {
     case "reboot plz":
       _reboot(message);
       break;
@@ -69,7 +61,6 @@ bot.on("messageCreate", (message) => {
       _greet_possible(message);
       break;
     case "chuckle tell me a joke":
-      console.log("Telling a joke.");
       _joke();
       break;
     case "chuckle lets play rock paper scissors":
