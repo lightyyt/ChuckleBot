@@ -10,7 +10,7 @@ const {
 
 /* Commands */
 const _reboot = require("./actions/reboot.js");
-const { _greet } = require("./actions/greet.js");
+const { _greet_hey } = require("./actions/greet.js");
 /*----------*/
 
 require("dotenv").config();
