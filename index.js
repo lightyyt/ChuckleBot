@@ -22,7 +22,7 @@ const wh_url = process.env.WEBHOOK
 const wh = new WebhookClient( { url: wh_url } );
 wh.send({
 	content: 'Chuckple Beta is Restarting!',
-	username: 'Chuckple Server Updates',
+	username: 'Chuckple Beta Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
 });
 
@@ -82,12 +82,12 @@ bot.on("messageCreate", (message) => {
     }
   } catch (ex) {
     wh.send({
-    	content: ex,
-    	username: 'Chuckple Error Logs',
+    	content: ex.stack,
+    	username: 'Chuckple Beta Errors',
     	avatarURL: 'https://cdn-icons-png.freepik.com/512/4944/4944051.png',
       });
     console.log("EXCEPTION CAUGHT:");
-    console.log(ex);
+    console.log(ex.stack);
   }
 });
 
