@@ -21,7 +21,7 @@ require("dotenv").config();
 const wh_info_url = process.env.WEBHOOKINFO
 const wh_info = new WebhookClient( { url: wh_info_url } );
 wh_info.send({
-	content: 'Chuckple Beta is Restarting!',
+	content: 'Chuckple Beta is :bot_up:',
 	username: 'Chuckple Beta Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
 });
@@ -99,6 +99,7 @@ bot.on("messageCreate", (message) => {
     chuckleLog("Error", ex.toString(), ex.stack, 255*256*256)
     console.log("EXCEPTION CAUGHT");
     //console.log(ex.stack);
+    throw new Error("Temporary Autorestart test!");
   }
 });
 
