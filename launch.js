@@ -1,5 +1,6 @@
 require("dotenv").config();
 //Webhook
+const {WebhookClient} = require("discord.js");
 const wh_url = process.env.WEBHOOKINFO
 const wh = new WebhookClient( { url: wh_url } );
 const { spawn } = require('child_process');
