@@ -18,10 +18,11 @@ const { filter_text, filter_msg } = require("./util/filter.js");
 
 require("dotenv").config();
 //Webhooks
+const up_emoji = process.env.EMOJI_UP
 const wh_info_url = process.env.WEBHOOKINFO
 const wh_info = new WebhookClient( { url: wh_info_url } );
 wh_info.send({
-	content: 'Chuckple Beta is :bot_up:',
+	content: 'Chuckple Beta is '+up_emoji+'!',
 	username: 'Chuckple Beta Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
 });
@@ -99,7 +100,7 @@ bot.on("messageCreate", (message) => {
     chuckleLog("Error", ex.toString(), ex.stack, 255*256*256)
     console.log("EXCEPTION CAUGHT");
     //console.log(ex.stack);
-    throw new Error("Temporary Autorestart test!");
+    /*throw new Error("Temporary Autorestart test!");*/
   }
 });
 

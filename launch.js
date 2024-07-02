@@ -1,5 +1,6 @@
 require("dotenv").config();
 //Webhook
+const down_emoji = process.env.EMOJI_DOWN
 const {WebhookClient} = require("discord.js");
 const wh_url = process.env.WEBHOOKINFO
 const wh = new WebhookClient( { url: wh_url } );
@@ -21,8 +22,8 @@ function startScript() {
     child.on('close', (code) => {
         console.log(`Child process exited with code ${code}`);
         // Optionally implement a delay before restart
-        say("Chuckle went :bot_down:")
-        setTimeout(startScript, 1000); // Restart after 1 second
+        say("Chuckle went "+down_emoji)
+        setTimeout(startScript, 3000); // Restart after 1 second
     });
 
     child.on('error', (err) => {
