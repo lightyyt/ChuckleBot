@@ -71,8 +71,8 @@ bot.on("messageCreate", (message) => {
         _reboot(message);
         break;
       case 'error plz':
-        if(message.author.id==618031275961352203){
-          throw new Error("This is a debugging-error thrown by @<618031275961352203>!");
+        if(message.author.id==process. env.OWNER){
+          throw new Error("This is a debugging-error thrown by the Owner!");
         }
         break;
       case "hey chuckle":
