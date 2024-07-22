@@ -18,7 +18,7 @@ function startScript() {
     const child = spawn('node', ['index.js'], {
         stdio: 'inherit'
     });
-
+    
     child.on('close', (code) => {
         console.log(`Child process exited with code ${code}`);
         // Optionally implement a delay before restart
@@ -32,4 +32,24 @@ function startScript() {
     });
 }
 
+
+function startWs() {
+    const child = spawn('node', ['ws.js'], {
+        stdio: 'inherit'
+    });
+    
+    child.on('close', (code) => {
+        console.log(`Child process exited with code ${code}`);
+        // Optionally implement a delay before restart
+        setTimeout(startWs, 3000); // Restart after 1 second
+    });
+
+    child.on('error', (err) => {
+        console.error('Failed to start child process:', err);
+        say("An Error Ocurred starting Webserver.")
+    });
+}
+
+
 startScript();
+startWs();
