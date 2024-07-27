@@ -9,7 +9,7 @@ const { spawn } = require('child_process');
 function say(msg){
   wh.send({
 	  content: msg,
-  	username: 'Chuckple Beta Infos',
+  	username: 'Chuckple Infos',
   	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
   });
 }

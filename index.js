@@ -9,7 +9,7 @@ const {
 } = require("discord.js");
 
 /* Commands */
-const { _reboot, doReboot } = require("./actions/reboot.js");
+//ONLY ON DEV: const { _reboot, doReboot } = require("./actions/reboot.js");
 const { _greet_hey, _greet_possible } = require("./actions/greet.js");
 const _joke = require("./actions/joke.js");
 /*   Util   */
@@ -22,8 +22,8 @@ const up_emoji = process.env.EMOJI_UP
 const wh_info_url = process.env.WEBHOOKINFO
 const wh_info = new WebhookClient( { url: wh_info_url } );
 wh_info.send({
-	content: 'Chuckple Beta is '+up_emoji+'!',
-	username: 'Chuckple Beta Infos',
+	content: 'Chuckple is '+up_emoji+'!',
+	username: 'Chuckple Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/984/984440.png',
 });
 const wh_logs_url = process.env.WEBHOOKLOGS
@@ -31,7 +31,7 @@ const wh_logs = new WebhookClient( { url: wh_logs_url } );
 function chuckleLog(type, header, content,color){
   wh_logs.send({
   content: null,
-  username: 'Chuckple Beta Infos',
+  username: 'Chuckple Infos',
 	avatarURL: 'https://cdn-icons-png.freepik.com/512/4944/4944051.png',
   embeds: [
     {
@@ -67,14 +67,14 @@ bot.on("messageCreate", (message) => {
   if (message.author.bot) { return; }
   try{
     switch ( filter_msg(message) ) {
-      case "reboot plz":
+      /*ONLY ON DEV: case "reboot plz":
         _reboot(message);
         break;
       case 'error plz':
         if(message.author.id==process. env.OWNER){
           throw new Error("This is a debugging-error thrown by the Owner!");
         }
-        break;
+        break;*/
       case "hey chuckle":
         _greet_hey(message);
         break;
