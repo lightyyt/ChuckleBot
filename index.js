@@ -64,6 +64,12 @@ bot.on("ready", () => {
 
 
 bot.on("messageCreate", (message) => {
+  //Only on beta:
+  if(!message.content.startsWith("!")){ return }
+  //End of only beta
+  //Only on Release:
+  //if(message.content.startsWith("!")){ return; }
+  //End of only Release
   if (message.author.bot) { return; }
   try{
     switch ( filter_msg(message) ) {
