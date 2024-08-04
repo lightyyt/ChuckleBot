@@ -9,7 +9,7 @@ const {
 } = require("discord.js");
 
 /* Commands */
-//ONLY ON DEV: const { _reboot, doReboot } = require("./actions/reboot.js");
+const { _reboot, doReboot } = require("./actions/reboot.js");
 const { _greet_hey, _greet_possible } = require("./actions/greet.js");
 const _joke = require("./actions/joke.js");
 /*   Util   */
@@ -67,14 +67,14 @@ bot.on("messageCreate", (message) => {
   if (message.author.bot) { return; }
   try{
     switch ( filter_msg(message) ) {
-      /*ONLY ON DEV: case "reboot plz":
+      case "reboot plz":
         _reboot(message);
         break;
       case 'error plz':
         if(message.author.id==process. env.OWNER){
           throw new Error("This is a debugging-error thrown by the Owner!");
         }
-        break;*/
+        break;
       case "hey chuckle":
         _greet_hey(message);
         break;
@@ -95,6 +95,8 @@ bot.on("messageCreate", (message) => {
         break;
       case "chuckle lets play again":
         rematch_rps(message);
+      case "chuckle how are you":
+        message.reply("Well, even though i'm not real, I always enjoy the company of you all!")
     }
   } catch (ex) {
     chuckleLog("Error", ex.toString(), ex.stack, 255*256*256)
